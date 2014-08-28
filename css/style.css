@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "DejaVu Sans Mono", "Courier New", Courier, monospace;
+}
+
+div#calculator {
+    margin: 50px auto 100px auto;
+    display: table;
+    border: 1px solid lightgray;
+    padding: 10px;
+    box-shadow: 0px 0px 20px lightgray;
+}
+
+div#history {
+    padding: 10px;
+    border: 1px solid lightgray;
+    margin-bottom: 5px;
+    height: 150px;
+    overflow: auto;
+}
+
+div#history pre {
+    text-align: right;
+    width: 100%;
+    font-size: 1.3em;
+    margin: 0;
+}
+
+table#keyboard {
+    border-collapse: separate;
+    border-spacing: 5px;
+}
+
+table#keyboard td {
+    width: 50px;
+    height: 40px;
+    padding: 0;
+}
+
+table#keyboard button {
+    font-family: inherit;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    font-size: 1.1em;
+}
