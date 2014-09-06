@@ -18,6 +18,39 @@ public class CalcResource {
 
     static double memory = 0.0d;
 
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public OperationList all() {
+        OperationList ops = new OperationList();
+
+        // Basic ops
+        ops.add("add");
+        ops.add("subtract");
+        ops.add("multiply");
+        ops.add("divide");
+
+        // Advanced ops
+        ops.add("sqrt");
+        ops.add("pow");
+
+        // Trigonometry
+        ops.add("sin");
+        ops.add("cos");
+        ops.add("tan");
+
+        // Exponentiation
+        ops.add("log");
+        ops.add("exp");
+
+        // Memory
+        ops.add("mread");
+        ops.add("madd");
+        ops.add("msubtract");
+        ops.add("mclear");
+
+        return ops;
+    }
+
     /*
      ******************
      * BASIC OPS
