@@ -1,0 +1,77 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>UNED Calculator</title>
+    <meta name="description" content="UNED Calculator">
+    <meta name="author" content="Nikole Yanez">
+
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="style.css?v=1.0">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="calculator.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <div id="calculator">
+
+      <div id="display">
+        <pre id="history"></pre>
+        <pre id="input"></pre>
+      </div>
+
+      <table id="keyboard">
+        <tbody>
+          <tr>
+            <td><button type="button">MR</button></td>
+            <td><button type="button">M+</button></td>
+            <td><button type="button">M-</button></td>
+            <td><button type="button">MC</button></td>
+            <td><button type="button">C</button></td>
+          </tr>
+          <tr>
+            <td><button type="button">sin</button></td>
+            <td><button type="button">cos</button></td>
+            <td><button type="button">tan</button></td>
+            <td><button type="button">log</button></td>
+            <td><button type="button">e</button></td>
+          </tr>
+          <tr>
+            <td><button type="button" class="num">7</button></td>
+            <td><button type="button" class="num">8</button></td>
+            <td><button type="button" class="num">9</button></td>
+            <td><button type="button">&#8730;</button></td>
+            <td><button type="button">^</button></td>
+          </tr>
+          <tr>
+            <td><button type="button" class="num">4</button></td>
+            <td><button type="button" class="num">5</button></td>
+            <td><button type="button" class="num">6</button></td>
+            <td><button type="button">&#247;</button></td>
+            <td><button type="button">x</button></td>
+          </tr>
+          <tr>
+            <td><button type="button" class="num">1</button></td>
+            <td><button type="button" class="num">2</button></td>
+            <td><button type="button" class="num">3</button></td>
+            <td colspan="1" rowspan="2"><button type="button">+</button></td>
+            <td><button type="button">-</button></td>
+          </tr>
+          <tr>
+            <td colspan="2" rowspan="1"><button type="button" class="num">0</button></td>
+            <td><button type="button">.</button></td>
+            <td><button type="button">=</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div> <!-- calculator -->
+
+  </body>
+</html>
