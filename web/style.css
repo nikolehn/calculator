@@ -24,10 +24,15 @@ body {
     margin: 0;
 }
 
-#history {
-    font-size: 1.1em;
+#history-scroll {
+    direction: rtl;
     height: 160px;
-    overflow: hidden;
+    overflow-y: scroll;
+}
+
+#history {
+    direction: ltr;
+    font-size: 1.1em;
 }
 
 #input {

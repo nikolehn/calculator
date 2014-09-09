@@ -152,6 +152,10 @@ $(document).ready(function() {
 
         var operand = $('#input').text();
 
+        if (!operand) {
+            return;
+        }
+
         if (stack_operation != null) {
             call_server(stack_operation, stack_operand, operand);
             return;
