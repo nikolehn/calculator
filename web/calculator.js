@@ -36,18 +36,24 @@ $(document).ready(function() {
 
     function call_server(operation, op1, op2) {
 
-        var url = '/calculator/api/calc/' +
-            operation + '/' + op1;
+        var url = '/calculator/api/calc/' + operation;
 
-        if (op2 != null) {
-            url = url + '/' + op2
+        if (op1 != null) {
+            url = url + '/' + op1;
         }
 
-        var action = operation + '(' + op1;
         if (op2 != null) {
-            action = action + ', ' + op2
+            url = url + '/' + op2;
         }
-        action = action + ')'
+
+        var action = operation + '(';
+        if (op1 != null) {
+            action = action + op1;
+        }
+        if (op2 != null) {
+            action = action + ', ' + op2;
+        }
+        action = action + ')';
 
         $.ajax({
             type: 'GET',
@@ -71,6 +77,15 @@ $(document).ready(function() {
     // Numbers
     $('button.num').click(function() {
         $('#input').append($(this).text());
+    });
+
+    // Zero operands operations
+    $('button.op0').click(function() {
+
+        var operation = $(this).attr('id');
+
+        // Perfom call to server
+        call_server(operation, null, null);
     });
 
     // One operand operations

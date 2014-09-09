@@ -286,6 +286,7 @@ public class CalcResource {
         op.setOperands(operands);
         CalcResource.memory += op1;
         op.setResult(CalcResource.memory);
+        //op.setResult(op1);
         return op;
     }
 
@@ -303,6 +304,7 @@ public class CalcResource {
         op.setOperands(operands);
         CalcResource.memory -= op1;
         op.setResult(CalcResource.memory);
+        //op.setResult(op1);
         return op;
     }
 
