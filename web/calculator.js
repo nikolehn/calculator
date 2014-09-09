@@ -41,19 +41,19 @@ $(document).ready(function() {
 
         var url = '/calculator/api/calc/' + operation;
 
-        if (op1 != null) {
+        if (op1 !== null) {
             url = url + '/' + op1;
         }
 
-        if (op2 != null) {
+        if (op2 !== null) {
             url = url + '/' + op2;
         }
 
         var action = operation + '(';
-        if (op1 != null) {
+        if (op1 !== null) {
             action = action + op1;
         }
-        if (op2 != null) {
+        if (op2 !== null) {
             action = action + ', ' + op2;
         }
         action = action + ')';
@@ -120,9 +120,9 @@ $(document).ready(function() {
         }
 
         // Set first operand
-        if (stack_operation == null) {
+        if (stack_operation === null) {
             stack_operation = operation;
-            if (stack_operand == null) {
+            if (stack_operand === null) {
                 stack_operand = operand;
                 reset_input();
             }
@@ -130,7 +130,7 @@ $(document).ready(function() {
         }
 
         // Check if the operation changed
-        if (stack_operation != operation) {
+        if (stack_operation !== operation) {
             stack_operation = operation;
             return;
         }
@@ -160,7 +160,7 @@ $(document).ready(function() {
             return;
         }
 
-        if (stack_operation != null) {
+        if (stack_operation !== null) {
             call_server(stack_operation, stack_operand, operand);
             return;
         }
