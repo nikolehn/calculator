@@ -32,6 +32,9 @@ $(document).ready(function() {
         $('#history').append(
             line + '<br/>'
         );
+        var scroll = $('#history-scroll');
+        var height = scroll[0].scrollHeight;
+        scroll.scrollTop(height);
     }
 
     function call_server(operation, op1, op2) {
@@ -153,6 +156,7 @@ $(document).ready(function() {
         var operand = $('#input').text();
 
         if (!operand) {
+            flash_input();
             return;
         }
 
