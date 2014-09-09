@@ -2,11 +2,23 @@ $(document).ready(function() {
 
     // State
     var dot_used = false;
+    var stack_operation = null;
+    var stack_operand = null;
 
     // Helpers
-    function clear() {
+    function reset_input() {
         $('#input').text('');
         dot_used = false;
+    }
+
+    function reset_stack() {
+        stack_operation = null;
+        stack_operand = null;
+    }
+
+    function clear() {
+        reset_input();
+        reset_stack();
     }
 
     function flash_input() {
@@ -20,6 +32,40 @@ $(document).ready(function() {
         $('#history').append(
             line + '<br/>'
         );
+    }
+
+    function call_server(operation, op1, op2) {
+
+        var url = '/calculator/api/calc/' +
+            operation + '/' + op1;
+
+        if (op2 != null) {
+            url = url + '/' + op2
+        }
+
+        var action = operation + '(' + op1;
+        if (op2 != null) {
+            action = action + ', ' + op2
+        }
+        action = action + ')'
+
+        $.ajax({
+            type: 'GET',
+            dataType: 'json',
+            url: url,
+            success: function(data) {
+                add_history(action);
+                clear();
+                $('#input').text(data.result);
+            },
+            error: function(xhr, opts, err) {
+                console.log(xhr.status);
+                console.log(err);
+                console.log(xhr.responseText);
+                console.log(xhr);
+                flash_input();
+            }
+        });
     }
 
     // Numbers
@@ -40,26 +86,39 @@ $(document).ready(function() {
         }
 
         // Perfom call to server
-        $.ajax({
-            type: 'GET',
-            dataType: 'json',
-            url: '/calculator/api/calc/' +
-                operation + '/' +
-                operand,
-            success: function(data) {
-                add_history(operation + '(' + operand + ')');
-                dot_used = false;
-                $('#input').text(data.result);
-            },
-            error: function(xhr, opts, err) {
-                console.log(xhr.status);
-                console.log(err);
-                console.log(xhr.responseText);
-                console.log(xhr);
-                alert('Invalid entry!');
-                clear();
+        call_server(operation, operand, null);
+    });
+
+    // Two operands operations
+    $('button.op2').click(function() {
+
+        var operation = $(this).attr('id');
+        var operand = $('#input').text();
+
+        // Check the operand exists
+        if (!operand) {
+            flash_input();
+            return;
+        }
+
+        // Set first operand
+        if (stack_operation == null) {
+            stack_operation = operation;
+            if (stack_operand == null) {
+                stack_operand = operand;
+                reset_input();
             }
-        });
+            return;
+        }
+
+        // Check if the operation changed
+        if (stack_operation != operation) {
+            stack_operation = operation;
+            return;
+        }
+
+        // Perfom call to server
+        call_server(operation, stack_operand, operand);
     });
 
     // Dot
@@ -75,7 +134,15 @@ $(document).ready(function() {
 
     // Equal
     $('#eq').click(function() {
-        add_history($('#input').text());
-        clear();
+
+        var operand = $('#input').text();
+
+        if (stack_operation != null) {
+            call_server(stack_operation, stack_operand, operand);
+            return;
+        }
+
+        add_history(operand);
+        reset_input();
     });
 });
